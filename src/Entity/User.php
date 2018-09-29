@@ -4,13 +4,15 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Sercurity\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- * @UniqueEntity
+ * @UniqueEntity(
  * fields={"email"},
  * message="L'email que vous avez indiqué est déjà utilisé !"
+ * )
  */
 class User implements UserInterface
 {
@@ -84,7 +86,7 @@ class User implements UserInterface
         return $this;
     }
 
-    public public function eraseCredentials(){}
+    public function eraseCredentials(){}
 
     public function getSalt(){}
 
